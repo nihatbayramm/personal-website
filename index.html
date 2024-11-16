@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nihatbayramm</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-image: url('arkaplan.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .header {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 45px;
+        color: lime;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: center;
+        animation: neon-blink 1s infinite alternate;
+      }
+
+      @keyframes neon-blink {
+        0% {
+          text-shadow: 
+            0 0 10px lime, 
+            0 0 20px lime, 
+            0 0 30px lime, 
+            0 0 40px rgba(0, 255, 0, 0.7), 
+            0 0 50px rgba(0, 255, 0, 0.5);
+        }
+        100% {
+          text-shadow: 
+            0 0 20px lime, 
+            0 0 30px lime, 
+            0 0 40px lime, 
+            0 0 50px rgba(0, 255, 0, 0.7);
+        }
+      }
+
+      .about {
+        position: absolute;
+        top: 20%;
+        left: 20px;
+        width: 300px;
+        text-align: left;
+      }
+
+      .about h1 {
+        font-size: 25px;
+        margin-bottom: 10px;
+        color: rgb(20, 15, 13);
+        animation: neon-blink-about 1s infinite alternate;
+      }
+
+      .about p {
+        font-size: 20px;
+        line-height: 1.5;
+        color: black;
+        animation: neon-blink-text 1s infinite alternate;
+      }
+
+      @keyframes neon-blink-about {
+        0% {
+          text-shadow: 
+            0 0 10px rgb(14, 11, 11), 
+            0 0 20px rgb(7, 5, 5);
+        }
+        100% {
+          text-shadow: 
+            0 0 20px rgb(10, 9, 9), 
+            0 0 30px rgb(14, 11, 11);
+        }
+      }
+
+      @keyframes neon-blink-text {
+        0% {
+          text-shadow: 
+            0 0 10px black, 
+            0 0 20px black;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px black, 
+            0 0 30px black;
+        }
+      }
+
+      .social-media {
+        position: absolute;
+        top: 20%;
+        right: 20px;
+        text-align: left;
+      }
+
+      .social-media h1 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        animation: neon-blink-social 1s infinite alternate;
+      }
+
+      .social-media a {
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        display: block;
+        margin-bottom: 10px;
+        animation: neon-blink-link 1s infinite alternate;
+      }
+
+      @keyframes neon-blink-social {
+        0% {
+          text-shadow: 
+            0 0 10px white, 
+            0 0 20px white;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px white, 
+            0 0 30px white;
+        }
+      }
+
+      @keyframes neon-blink-link {
+        0% {
+          text-shadow: 
+            0 0 10px white, 
+            0 0 20px white;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px white, 
+            0 0 30px white;
+        }
+      }
+
+      .social-media a:hover {
+        color: rgb(5, 5, 4);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Mobile uyumluluk */
+      @media (max-width: 768px) {
+        .header {
+          font-size: 30px;
+          top: 20px;
+        }
+
+        .about {
+          top: 40%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+          text-align: center;
+        }
+
+        .social-media {
+          top: 65%;
+          right: 50%;
+          transform: translateX(50%);
+          width: 80%;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          font-size: 24px;
+        }
+
+        .about p {
+          font-size: 18px;
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="header">
+    WELCOME TO MY SITE
+  </div>
+
+  <div class="about">
+    <h1>ABOUT ME</h1>
+    <p>HELLO! My name is Nihat. I am a computer science student. I am interested in web development and cybersecurity intelligence.</p>
+  </div>
+
+  <div class="social-media">
+    <h1>SOCIAL MEDIA ACCOUNTS</h1>
+    <a href="https://github.com/nihatbayramm" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/nihatbayramm/" target="_blank">Instagram</a>
+  </div>
+</body>
+</html>
