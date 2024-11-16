@@ -27,36 +27,81 @@
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        color: rgb(7, 70, 20);
-        font-size: 2.5rem;
-        font-weight: bold;
+        font-size: 45px;
+        color: lime;
+        white-space: nowrap;
+        overflow: hidden;
         text-align: center;
+        animation: neon-blink 1s infinite alternate;
+      }
+
+      @keyframes neon-blink {
+        0% {
+          text-shadow: 
+            0 0 10px lime, 
+            0 0 20px lime, 
+            0 0 30px lime, 
+            0 0 40px rgba(0, 255, 0, 0.7), 
+            0 0 50px rgba(0, 255, 0, 0.5);
+        }
+        100% {
+          text-shadow: 
+            0 0 20px lime, 
+            0 0 30px lime, 
+            0 0 40px lime, 
+            0 0 50px rgba(0, 255, 0, 0.7);
+        }
       }
 
       .about {
         position: absolute;
         top: 20%;
         left: 20px;
-        text-align: left;
         width: 300px;
+        text-align: left;
       }
 
       .about h1 {
         font-size: 25px;
         margin-bottom: 10px;
-        color: rgb(54, 10, 10);
-        text-align: center;
-
+        color: rgb(20, 15, 13);
+        animation: neon-blink-about 1s infinite alternate;
       }
 
       .about p {
-        font-size: 25px;
+        font-size: 20px;
         line-height: 1.5;
-        text-align: center;
+        color: black;
+        animation: neon-blink-text 1s infinite alternate;
+      }
+
+      @keyframes neon-blink-about {
+        0% {
+          text-shadow: 
+            0 0 10px rgb(14, 11, 11), 
+            0 0 20px rgb(7, 5, 5);
+        }
+        100% {
+          text-shadow: 
+            0 0 20px rgb(10, 9, 9), 
+            0 0 30px rgb(14, 11, 11);
+        }
+      }
+
+      @keyframes neon-blink-text {
+        0% {
+          text-shadow: 
+            0 0 10px black, 
+            0 0 20px black;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px black, 
+            0 0 30px black;
+        }
       }
 
       .social-media {
-       
         position: absolute;
         top: 20%;
         right: 20px;
@@ -64,25 +109,87 @@
       }
 
       .social-media h1 {
-        color: aliceblue;
+        color: white;
         margin-bottom: 15px;
         font-size: 1.5rem;
+        animation: neon-blink-social 1s infinite alternate;
       }
 
       .social-media a {
-        color: rgb(227, 232, 235);
-        border: 2px solid rgb(240, 235, 235);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.8);
         padding: 10px 20px;
         border-radius: 10px;
         text-decoration: none;
         transition: background-color 0.3s ease, color 0.3s ease;
         display: block;
         margin-bottom: 10px;
+        animation: neon-blink-link 1s infinite alternate;
+      }
+
+      @keyframes neon-blink-social {
+        0% {
+          text-shadow: 
+            0 0 10px white, 
+            0 0 20px white;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px white, 
+            0 0 30px white;
+        }
+      }
+
+      @keyframes neon-blink-link {
+        0% {
+          text-shadow: 
+            0 0 10px white, 
+            0 0 20px white;
+        }
+        100% {
+          text-shadow: 
+            0 0 20px white, 
+            0 0 30px white;
+        }
       }
 
       .social-media a:hover {
         color: rgb(5, 5, 4);
-        background-color: rgb(230, 208, 15);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Mobile uyumluluk */
+      @media (max-width: 768px) {
+        .header {
+          font-size: 30px;
+          top: 20px;
+        }
+
+        .about {
+          top: 40%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+          text-align: center;
+        }
+
+        .social-media {
+          top: 65%;
+          right: 50%;
+          transform: translateX(50%);
+          width: 80%;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          font-size: 24px;
+        }
+
+        .about p {
+          font-size: 18px;
+        }
       }
     </style>
 </head>
