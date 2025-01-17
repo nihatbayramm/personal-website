@@ -1,0 +1,100 @@
+:root {
+    --main-bg: #1d1e22;
+    --main-color: #00ffff;
+    --font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--main-bg);
+    color: #fff;
+    font-family: var(--font-family);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Animasyonlu Bölüm */
+.animation-container {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 1024px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Hakkımda Bölümü */
+.about {
+    margin: 2rem auto;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+.about h1 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.about p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Sosyal Medya Bölümü */
+.social-media {
+    text-align: center;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+.social-media h1 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.social-media a {
+    display: inline-block;
+    margin: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: var(--main-color);
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .about h1, .social-media h1 {
+        font-size: 1.8rem;
+    }
+
+    .about p, .social-media a {
+        font-size: 1rem;
+    }
+
+    /* Animasyon alanı daha küçük ekranlarda uyumlu olacak şekilde ayarlandı */
+    .animation-container svg {
+        height: 150px;
+    }
+}

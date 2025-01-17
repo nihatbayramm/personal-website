@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihat Bayram</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animasyonlu Bölüm -->
+    <div class="animation-container">
+        <svg viewBox="0 0 1024 200" preserveAspectRatio="xMidYMid slice" width="100%" height="200">
+            <filter id="water">
+                <feImage xlink:href="https://moxsim.ru/codepen/016-text-art/ocean.jpg" result="IMAGE"></feImage>
+                <feTurbulence id="turbulence" in="IMAGE" baseFrequency="0.01" numOctaves="2" result="NOISE"></feTurbulence>
+                <feDisplacementMap in="IMAGE" in2="NOISE" scale="30" result="DISPLACE"></feDisplacementMap>
+                <animate xlink:href="#turbulence" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1" values="0.01 0.02;0.02 0.04;0.01 0.02" repeatCount="indefinite"></animate>
+            </filter>
+            <rect x="0" y="0" width="1024" height="200" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#water)"></rect>
+        </svg>
+    </div>
+
+    <!-- Hakkımda Kısmı -->
+    <div class="about">
+        <h1>ABOUT ME</h1>
+        <p>HELLO! My name is Nihat. I am a computer science student. I am interested in web development and cybersecurity intelligence.</p>
+    </div>
+
+    <!-- Sosyal Medya Kısmı -->
+    <div class="social-media">
+        <h1>SOCIAL MEDIA</h1>
+        <a href="https://github.com/nihatbayramm" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/nihatbayramm/" target="_blank">Instagram</a>
+    </div>
+</body>
+</html>
