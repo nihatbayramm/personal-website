@@ -32,18 +32,25 @@ html, body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     width: 100%;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     min-height: 100vh;
     padding: var(--mobile-padding);
     width: 100%;
     max-width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 /* Animasyonlu Bölüm */
@@ -99,75 +106,61 @@ svg {
 }
 
 /* Hakkımda Bölümü */
-.about {
-    margin: var(--section-spacing) auto;
-    text-align: left;
-    width: 90%;
-    max-width: 800px;
+.about, .social-media, .quote, .cert-category {
     background: var(--card-bg);
-    padding: 2.5rem;
+    border: 1px solid var(--card-border);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
+    margin: var(--section-spacing) auto;
+    padding: 2rem 2.5rem;
+    width: 90%;
+    max-width: 800px;
+    transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid var(--card-border);
 }
 
-.about:hover {
+.about:hover, .social-media:hover, .quote:hover, .cert-category:hover {
     transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
     border-color: var(--accent-color);
 }
 
-.about h1 {
-    font-size: 2.5rem;
+.about h1, .social-media h1, .quote h1, .cert-category h3 {
     color: var(--accent-color);
-    margin-bottom: 2rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
-.about h2 {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-    margin: 2rem 0 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-}
+.about h1 { font-size: 2.2rem; }
+.social-media h1 { font-size: 2rem; }
+.cert-category h3 { font-size: 1.2rem; margin-bottom: 1rem; }
 
-.about h2 i {
-    font-size: 1.3rem;
-}
-
-.about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.intro {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
+.about-content, .about-content p, .intro {
     text-align: justify;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.2rem 0;
+    padding: 0;
 }
 
-.tech-stack {
-    margin-top: 1.5rem;
+.tech-stack, .education {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--border-radius);
     padding: 1.5rem;
+    margin-top: 1.5rem;
     transition: all 0.3s ease;
 }
 
-.tech-stack:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--accent-color);
+.tech-stack h2, .education h2 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .tech-icons {
@@ -184,91 +177,10 @@ svg {
     padding: 0.5rem 1rem;
     background: var(--hover-color);
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--accent-color);
-    transition: all 0.3s ease;
     border: 1px solid var(--card-border);
-}
-
-.tech-icons span:hover {
-    background: var(--accent-color);
-    color: var(--main-bg);
-    transform: translateY(-2px);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
-}
-
-.education {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
     transition: all 0.3s ease;
-}
-
-.education:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--accent-color);
-}
-
-.education p {
-    color: var(--text-secondary);
-    margin: 0.8rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    font-size: 1rem;
-}
-
-.education p::before {
-    content: "•";
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-}
-
-.certifications li {
-    color: var(--text-secondary);
-    margin: 0.8rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    font-size: 1rem;
-}
-
-.certifications li::before {
-    content: "✓";
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-}
-
-/* Sertifika Kategorileri */
-.cert-category {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.cert-category:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--accent-color);
-}
-
-.cert-category h3 {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.cert-category h3 i {
-    font-size: 1.1rem;
 }
 
 .cert-category ul {
@@ -279,49 +191,23 @@ svg {
 
 .cert-category li {
     color: var(--text-secondary);
-    margin: 0.8rem 0;
-    padding-left: 1.5rem;
+    margin: 0.7rem 0;
+    padding-left: 1.2rem;
     position: relative;
     font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-align: left;
 }
 
 .cert-category li i {
     color: var(--accent-color);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    margin-right: 0.3rem;
 }
 
 /* Sosyal Medya Bölümü */
-.social-media {
-    margin: var(--section-spacing) auto;
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--card-border);
-}
-
-.social-media:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--accent-color);
-}
-
-.social-media h1 {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
-
 .social-links {
     display: flex;
     justify-content: center;
@@ -348,6 +234,7 @@ svg {
     box-sizing: border-box;
     margin: 0.5rem auto;
     border: 1px solid var(--card-border);
+    text-align: center;
 }
 
 .social-media a:hover {
@@ -358,96 +245,53 @@ svg {
     box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
 }
 
-/* Alıntı Bölümü */
-.quote {
-    margin: var(--section-spacing) auto;
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    border: 1px solid var(--card-border);
-}
-
-.quote:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--accent-color);
-}
-
-.quote blockquote {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
-}
-
-.quote footer {
-    margin-top: 1rem;
-    color: var(--accent-color);
-    font-weight: 500;
-}
-
 /* Mobil Uyumluluk */
 @media (max-width: 768px) {
     :root {
-        --section-spacing: 1.5rem;
-        --mobile-padding: 1rem;
+        --section-spacing: 1.2rem;
+        --mobile-padding: 0.7rem;
     }
-
-    .icon-container {
-        gap: 1.5rem;
+    .about, .social-media, .quote, .cert-category {
+        padding: 1.1rem 0.7rem;
+        margin: 1rem auto;
+        width: 98%;
+        max-width: 99vw;
     }
-
-    .icon-container i {
-        font-size: 2rem;
-    }
-
-    .about {
-        padding: 1.5rem;
-    }
-
-    .about h1 {
-        font-size: 2rem;
-    }
-
-    .about h2 {
+    .about h1, .social-media h1, .cert-category h3 {
         font-size: 1.3rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
     }
-
-    .intro {
-        font-size: 1rem;
+    .about-content, .about-content p, .intro {
+        text-align: center;
+        font-size: 0.98rem;
+        margin-bottom: 1rem;
+        line-height: 1.7;
     }
-
-    .tech-stack {
-        padding: 1.2rem;
+    .cert-category ul {
+        align-items: center;
     }
-
+    .cert-category li {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.93rem;
+        padding-left: 0;
+        margin: 0.4rem 0;
+        width: 100%;
+        max-width: 95%;
+        word-break: break-word;
+    }
+    .cert-category li i {
+        margin-right: 0.3rem;
+    }
+    .tech-stack, .education {
+        padding: 1rem;
+    }
     .tech-icons span {
         font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
     }
-
-    .education {
-        padding: 1.2rem;
-    }
-
-    .social-media {
-        margin: 1rem;
-        padding: 1.5rem;
-        width: calc(100% - 2rem);
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .social-media h1 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-
     .social-links {
         flex-direction: column;
         align-items: center;
@@ -456,10 +300,9 @@ svg {
         padding: 0;
         gap: 0.8rem;
     }
-
     .social-links a {
         width: 100%;
-        max-width: 280px;
+        max-width: 260px;
         margin: 0.3rem 0;
         padding: 0.8rem 1rem;
         font-size: 0.95rem;
@@ -469,90 +312,41 @@ svg {
         align-items: center;
         gap: 0.5rem;
     }
-
     .social-links i {
-        font-size: 1.2rem;
-    }
-
-    .cert-category {
-        padding: 1.2rem;
-        margin-bottom: 1.2rem;
-    }
-
-    .cert-category h3 {
         font-size: 1.1rem;
-    }
-
-    .cert-category li {
-        font-size: 0.9rem;
-        padding-left: 1.2rem;
     }
 }
 
 @media (max-width: 480px) {
-    :root {
-        --section-spacing: 1rem;
-        --mobile-padding: 0.8rem;
+    .about, .social-media, .quote, .cert-category {
+        padding: 0.7rem 0.3rem;
+        margin: 0.7rem auto;
+        width: 99%;
+        max-width: 100vw;
     }
-
-    .icon-container {
-        gap: 1rem;
+    .about h1, .social-media h1, .cert-category h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.7rem;
     }
-
-    .icon-container i {
-        font-size: 1.8rem;
+    .about-content, .about-content p, .intro {
+        font-size: 0.93rem;
+        margin-bottom: 0.7rem;
     }
-
-    .about h1 {
-        font-size: 1.8rem;
+    .cert-category li {
+        font-size: 0.85rem;
+        padding-left: 0;
     }
-
-    .tech-stack {
-        padding: 1rem;
+    .tech-stack, .education {
+        padding: 0.7rem;
     }
-
     .tech-icons span {
         font-size: 0.8rem;
         padding: 0.3rem 0.6rem;
     }
-
-    .education {
-        padding: 1rem;
-    }
-
-    .cert-category {
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .cert-category h3 {
-        font-size: 1rem;
-    }
-
-    .cert-category li {
-        font-size: 0.85rem;
-        padding-left: 1rem;
-    }
-
-    .social-media {
-        padding: 1.2rem;
-        margin: 0.8rem;
-        width: calc(100% - 1.6rem);
-    }
-
-    .social-media h1 {
-        font-size: 1.6rem;
-        margin-bottom: 1.2rem;
-    }
-
     .social-links a {
         font-size: 0.9rem;
         padding: 0.7rem 0.9rem;
-        max-width: 260px;
-    }
-
-    .social-links i {
-        font-size: 1.1rem;
+        max-width: 220px;
     }
 }
 
@@ -670,6 +464,7 @@ svg {
         padding: 1rem;
     }
 
+    /* About Me Bölümü */
     .about {
         margin: 1rem;
         padding: 1.5rem;
@@ -684,24 +479,40 @@ svg {
     .about h1 {
         font-size: 1.8rem;
         margin-bottom: 1rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .about h2 {
         font-size: 1.3rem;
         margin: 0.8rem 0;
         justify-content: center;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .about-content {
         font-size: 0.95rem;
         line-height: 1.6;
-        text-align: justify;
+        text-align: center;
         padding: 0 1rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
+    .about-content p {
+        margin: 0;
+        padding: 0;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tech Stack Bölümü */
     .tech-stack {
         margin: 1rem 0;
         text-align: center;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .tech-icons {
@@ -717,19 +528,26 @@ svg {
         margin: 0.3rem;
         padding: 0.4rem 0.8rem;
         font-size: 0.85rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
+    /* Connect With Me Bölümü */
     .social-media {
         margin: 1rem;
         padding: 1.5rem;
         width: calc(100% - 2rem);
         box-sizing: border-box;
         text-align: center;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-media h1 {
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-links {
@@ -752,39 +570,69 @@ svg {
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-links i {
         font-size: 1.2rem;
+    }
+
+    /* Sertifika Kategorileri */
+    .cert-category {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .cert-category h3 {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .cert-category li {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 }
 
 @media (max-width: 480px) {
     .about h1 {
         font-size: 1.6rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .about h2 {
         font-size: 1.2rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .about-content {
         font-size: 0.9rem;
         padding: 0 0.5rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .tech-icons span {
         font-size: 0.8rem;
         padding: 0.3rem 0.6rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-media h1 {
         font-size: 1.6rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-links a {
         font-size: 0.9rem;
         padding: 0.7rem 0.9rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     .social-links i {
@@ -798,14 +646,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Scroll düzeltmeleri */
@@ -813,6 +655,8 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Parallax Efekti Düzeltmeleri */
