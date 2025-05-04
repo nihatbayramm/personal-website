@@ -7,34 +7,118 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Animasyonlu Bölüm -->
-    <div class="animation-container">
-        <svg viewBox="0 0 1024 200" preserveAspectRatio="xMidYMid slice" width="100%" height="200">
-            <filter id="water">
-                <feImage xlink:href="https://moxsim.ru/codepen/016-text-art/ocean.jpg" result="IMAGE"></feImage>
-                <feTurbulence id="turbulence" in="IMAGE" baseFrequency="0.01" numOctaves="2" result="NOISE"></feTurbulence>
-                <feDisplacementMap in="IMAGE" in2="NOISE" scale="30" result="DISPLACE"></feDisplacementMap>
-                <animate xlink:href="#turbulence" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1" values="0.01 0.02;0.02 0.04;0.01 0.02" repeatCount="indefinite"></animate>
-            </filter>
-            <rect x="0" y="0" width="1024" height="200" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#water)"></rect>
-        </svg>
+    <!-- Yazılım İkonları Bölümü -->
+    <div class="tech-icons-header">
+        <div class="icon-container">
+            <i class="fab fa-python"></i>
+            <i class="fab fa-js"></i>
+            <i class="fab fa-java"></i>
+            <i class="fab fa-html5"></i>
+            <i class="fab fa-css3"></i>
+            <i class="fab fa-linux"></i>
+            <i class="fas fa-database"></i>
+            <i class="fas fa-shield-alt"></i>
+            <i class="fas fa-code"></i>
+            <i class="fas fa-terminal"></i>
+        </div>
     </div>
 
     <!-- Hakkımda Kısmı -->
     <div class="about">
-        <h1>ABOUT ME</h1>
-        <p>HELLO! My name is Nihat. I am a computer science student. I am interested in web development and cybersecurity intelligence.</p>
+        <h1>About Me</h1>
+        <div class="about-content">
+            <p class="intro">My name is Nihat Bayram and I am a 3rd-year Computer Engineering student at Iğdır University. I am deeply passionate about improving my skills in cybersecurity, web programming, data science, and machine learning.</p>
+            
+            <div class="tech-stack">
+                <h2><i class="fas fa-code"></i> Tech Stack</h2>
+                <div class="tech-icons">
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span><i class="fas fa-code"></i> C</span>
+                    <span><i class="fab fa-js"></i> JavaScript</span>
+                    <span><i class="fab fa-css3"></i> CSS</span>
+                    <span><i class="fab fa-java"></i> Java</span>
+                    <span><i class="fas fa-database"></i> SQL</span>
+                    <span><i class="fab fa-angular"></i> Angular</span>
+                    <span><i class="fab fa-linux"></i> Ubuntu</span>
+                    <span><i class="fas fa-terminal"></i> PowerShell</span>
+                    <span><i class="fas fa-shield-alt"></i> Nmap</span>
+                    <span><i class="fas fa-bug"></i> Metasploit</span>
+                    <span><i class="fab fa-microsoft"></i> DotNet</span>
+                </div>
+            </div>
+
+            <div class="education">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <p>2026: Iğdır University, Computer Engineering (3rd Year)</p>
+                <p>Şırnak Mustafa Bayram ÇPAL High School, IT Technologies, Web Design</p>
+            </div>
+
+            <div class="certifications">
+                <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                
+                <div class="cert-category">
+                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                    <ul>
+                        <li><i class="fas fa-shield-alt"></i> Cybersecurity Analyst (Akbank Gençlik Akademisi)</li>
+                        <li><i class="fas fa-shield-alt"></i> Introduction to Cybersecurity (Cisco)</li>
+                        <li><i class="fas fa-shield-alt"></i> Ethical Hacker (Udemy)</li>
+                        <li><i class="fas fa-shield-alt"></i> Cybersecurity Analyst (Udemy)</li>
+                    </ul>
+                </div>
+
+                <div class="cert-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul>
+                        <li><i class="fas fa-code"></i> Web Programming (Frontend/Backend - Udemy)</li>
+                        <li><i class="fas fa-code"></i> Basic and Intermediate Java (BTK Akademi)</li>
+                        <li><i class="fas fa-code"></i> Python 101/202/303/404 (Turkcell Geleceği Yazanlar)</li>
+                    </ul>
+                </div>
+
+                <div class="cert-category">
+                    <h3><i class="fas fa-brain"></i> AI & Data Science</h3>
+                    <ul>
+                        <li><i class="fas fa-brain"></i> Artificial Intelligence Bootcamp (Pupilica)</li>
+                    </ul>
+                </div>
+
+                <div class="cert-category">
+                    <h3><i class="fas fa-language"></i> Language</h3>
+                    <ul>
+                        <li><i class="fas fa-language"></i> A1/A2/B1 English Level (BTK Akademi)</li>
+                    </ul>
+                </div>
+
+                <div class="cert-category">
+                    <h3><i class="fab fa-linux"></i> Linux</h3>
+                    <ul>
+                        <li><i class="fab fa-linux"></i> NDG Linux Unhatched</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Sosyal Medya Kısmı -->
     <div class="social-media">
-        <h1>SOCIAL MEDIA</h1>
-        <a href="https://github.com/nihatbayramm" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank">LinkedIn</a>
-        <a href="https://www.instagram.com/nihatbayramm/" target="_blank">Instagram</a>
+        <h1>Connect With Me</h1>
+        <div class="social-links">
+            <a href="https://github.com/nihatbayramm" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.instagram.com/nihatbayramm/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </div>
+
+    <!-- Alıntı Kısmı -->
+    <div class="quote">
+        <blockquote>
+            "When writing code, you're not just communicating with computers, you're communicating with your dreams."
+            <footer>- Nihat Bayram</footer>
+        </blockquote>
     </div>
 </body>
 </html>
