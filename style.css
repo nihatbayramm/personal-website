@@ -1,7 +1,25 @@
 :root {
-    --main-bg: #1d1e22;
-    --main-color: #00ffff;
+    /* Ana Renkler */
+    --main-bg: #0a192f;
+    --secondary-bg: #112240;
+    --main-color: #64ffda;
+    --text-primary: #e6f1ff;
+    --text-secondary: #8892b0;
+    
+    /* Vurgu Renkleri */
+    --accent-color: #64ffda;
+    --hover-color: rgba(100, 255, 218, 0.1);
+    
+    /* Kart Renkleri */
+    --card-border: rgba(100, 255, 218, 0.2);
+    --card-bg: rgba(17, 34, 64, 0.5);
+    --card-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    
+    /* Diğer Değişkenler */
     --font-family: 'Poppins', sans-serif;
+    --section-spacing: 2rem;
+    --mobile-padding: 1rem;
+    --border-radius: 4px;
 }
 
 html, body {
@@ -9,8 +27,12 @@ html, body {
     padding: 0;
     box-sizing: border-box;
     background-color: var(--main-bg);
-    color: #fff;
+    color: var(--text-primary);
     font-family: var(--font-family);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    line-height: 1.6;
 }
 
 body {
@@ -19,16 +41,21 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    padding: var(--mobile-padding);
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Animasyonlu Bölüm */
 .animation-container {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     width: 100%;
-    max-width: 1024px;
+    max-width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
 }
 
 svg {
@@ -37,64 +64,436 @@ svg {
     height: auto;
 }
 
+/* Yazılım İkonları Bölümü */
+.tech-icons-header {
+    width: 100%;
+    padding: 2.5rem 0;
+    background: var(--secondary-bg);
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.icon-container i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.icon-container i:hover {
+    transform: translateY(-5px) scale(1.1);
+    opacity: 1;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
 /* Hakkımda Bölümü */
 .about {
-    margin: 2rem auto;
-    text-align: center;
+    margin: var(--section-spacing) auto;
+    text-align: left;
     width: 90%;
-    max-width: 600px;
+    max-width: 800px;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
 }
 
 .about h1 {
-    font-size: 2rem;
-    color: var(--main-color);
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
 }
 
-.about p {
+.about h2 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.about h2 i {
+    font-size: 1.3rem;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    text-align: justify;
+}
+
+.tech-stack {
+    margin-top: 1.5rem;
+}
+
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.tech-icons span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--hover-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.tech-icons span:hover {
+    background: var(--accent-color);
+    color: var(--main-bg);
+    transform: translateY(-2px);
+}
+
+.education p, .certifications li {
+    color: var(--text-secondary);
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1rem;
+}
+
+.education p::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+}
+
+.certifications li::before {
+    content: "✓";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Sertifika Kategorileri */
+.cert-category {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.cert-category:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+    border-color: var(--accent-color);
+}
+
+.cert-category h3 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cert-category h3 i {
     font-size: 1.1rem;
-    line-height: 1.6;
+}
+
+.cert-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cert-category li {
+    color: var(--text-secondary);
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cert-category li i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
 }
 
 /* Sosyal Medya Bölümü */
 .social-media {
+    margin: var(--section-spacing) auto;
     text-align: center;
-    margin: 2rem auto;
     width: 90%;
     max-width: 600px;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
 }
 
 .social-media h1 {
     font-size: 2rem;
-    color: var(--main-color);
-    margin-bottom: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .social-media a {
-    display: inline-block;
-    margin: 0.5rem 1rem;
-    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: var(--text-primary);
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    gap: 0.8rem;
+    border-radius: var(--border-radius);
+    background: var(--hover-color);
 }
 
 .social-media a:hover {
-    color: var(--main-color);
+    color: var(--accent-color);
+    background: var(--hover-color);
+    transform: translateY(-3px);
+}
+
+/* Alıntı Bölümü */
+.quote {
+    margin: var(--section-spacing) auto;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.quote blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.quote footer {
+    margin-top: 1rem;
+    color: var(--accent-color);
+    font-weight: 500;
 }
 
 /* Mobil Uyumluluk */
 @media (max-width: 768px) {
-    .about h1, .social-media h1 {
-        font-size: 1.8rem;
+    :root {
+        --section-spacing: 1.5rem;
+        --mobile-padding: 1rem;
     }
 
-    .about p, .social-media a {
+    .icon-container {
+        gap: 1.5rem;
+    }
+
+    .icon-container i {
+        font-size: 2rem;
+    }
+
+    .about {
+        padding: 1.5rem;
+    }
+
+    .about h1 {
+        font-size: 2rem;
+    }
+
+    .about h2 {
+        font-size: 1.3rem;
+    }
+
+    .intro {
         font-size: 1rem;
     }
 
-    /* Animasyon alanı daha küçük ekranlarda uyumlu olacak şekilde ayarlandı */
-    .animation-container svg {
-        height: 150px;
+    .tech-icons span {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
     }
+
+    .social-media {
+        padding: 1.5rem;
+    }
+
+    .social-media a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cert-category {
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .cert-category h3 {
+        font-size: 1.1rem;
+    }
+
+    .cert-category li {
+        font-size: 0.9rem;
+        padding-left: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --section-spacing: 1rem;
+        --mobile-padding: 0.8rem;
+    }
+
+    .icon-container {
+        gap: 1rem;
+    }
+
+    .icon-container i {
+        font-size: 1.8rem;
+    }
+
+    .about h1 {
+        font-size: 1.8rem;
+    }
+
+    .tech-icons span {
+        font-size: 0.8rem;
+    }
+
+    .cert-category {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .cert-category h3 {
+        font-size: 1rem;
+    }
+
+    .cert-category li {
+        font-size: 0.85rem;
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    :root {
+        --mobile-padding: 0.6rem;
+    }
+
+    .icon-container i {
+        font-size: 1.5rem;
+    }
+
+    .about h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Yatay mod için düzenlemeler */
+@media (max-height: 600px) and (orientation: landscape) {
+    .about, .social-media, .quote {
+        margin: 0.8rem auto;
+    }
+
+    .tech-icons-header {
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .icon-container {
+        gap: 1rem;
+    }
+
+    .icon-container i {
+        font-size: 1.5rem;
+    }
+
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .social-media a {
+        width: auto;
+        min-width: 120px;
+    }
+}
+
+/* Kartlar için Genel Stil */
+.about, .social-media, .quote {
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.about:hover, .social-media:hover, .quote:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+    border-color: var(--accent-color);
+}
+
+/* Teknoloji İkonları için Hover Efekti */
+.tech-icons span {
+    border: 1px solid var(--card-border);
+}
+
+.tech-icons span:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+}
+
+/* Sosyal Medya Bağlantıları için Hover Efekti */
+.social-media a {
+    border: 1px solid var(--card-border);
+}
+
+.social-media a:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
 }
