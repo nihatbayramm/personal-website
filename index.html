@@ -13,28 +13,40 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="progress" id="progress"></div>
+  <div class="glow" id="glow" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header class="nav">
     <a href="#home" class="logo">nb<span>.</span></a>
     <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#certs">Certificates</a>
-      <a href="#contact" class="btn-nav">Contact</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#education" data-i18n="nav_edu">Education</a>
+      <a href="#certs" data-i18n="nav_certs">Certificates</a>
+      <a href="#contact" class="btn-nav" data-i18n="nav_contact">Contact</a>
     </nav>
+    <div class="tools">
+      <button id="lang" class="tool mono" aria-label="Language">TR</button>
+      <button id="theme" class="tool" aria-label="Theme"><i class="fas fa-sun"></i></button>
+    </div>
   </header>
 
   <main>
     <section id="home" class="hero">
-      <p class="eyebrow"><span class="dot"></span> Open to learn &amp; build</p>
-      <h1>Hi, I'm <span class="grad">Nihat Bayram</span></h1>
-      <p class="role">Computer Engineer · <span id="typed" class="mono"></span><span class="caret">|</span></p>
-      <p class="lead">I am deeply passionate about improving my skills in cybersecurity, web programming, data science, and machine learning.</p>
+      <p class="eyebrow"><span class="dot"></span> <span data-i18n="eyebrow">Open to learn &amp; build</span></p>
+      <h1><span data-i18n="hi">Hi, I'm</span> <span class="grad">Nihat Bayram</span></h1>
+      <p class="role"><span data-i18n="role">Computer Engineer</span> · <span id="typed" class="mono"></span><span class="caret">|</span></p>
+      <p class="lead" data-i18n="lead">I am deeply passionate about improving my skills in cybersecurity, web programming, data science, and machine learning.</p>
       <div class="cta">
-        <a class="btn primary" href="https://github.com/nihatbayramm" target="_blank" rel="noopener"><i class="fab fa-github"></i> View GitHub</a>
-        <a class="btn ghost" href="#contact">Get in touch <i class="fas fa-arrow-right"></i></a>
+        <a class="btn primary" href="https://github.com/nihatbayramm" target="_blank" rel="noopener"><i class="fab fa-github"></i> <span data-i18n="cta1">View GitHub</span></a>
+        <a class="btn ghost" href="#contact"><span data-i18n="cta2">Get in touch</span> <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="stats">
+        <div><b data-count="30">0</b><span data-i18n="st1">Repositories</span></div>
+        <div><b data-count="12">0</b><span data-i18n="st2">Technologies</span></div>
+        <div><b data-count="10">0</b><span data-i18n="st3">Certificates</span></div>
       </div>
       <div class="marquee" aria-hidden="true">
         <div class="track">
@@ -45,16 +57,16 @@
     </section>
 
     <section id="about" class="reveal">
-      <h2 class="title"><span class="num mono">01</span> About</h2>
+      <h2 class="title"><span class="num mono">01</span> <span data-i18n="t_about">About</span></h2>
       <div class="grid three">
-        <article class="card"><i class="fas fa-shield-alt"></i><h3>Cybersecurity</h3><p>Ethical hacking, network analysis and security tooling.</p></article>
-        <article class="card"><i class="fas fa-laptop-code"></i><h3>Web Development</h3><p>Frontend and backend, from clean HTML/CSS to Angular and .NET.</p></article>
-        <article class="card"><i class="fas fa-brain"></i><h3>Data &amp; ML</h3><p>Data science and machine learning with Python.</p></article>
+        <article class="card"><i class="fas fa-shield-alt"></i><h3 data-i18n="c1t">Cybersecurity</h3><p data-i18n="c1d">Ethical hacking, network analysis and security tooling.</p></article>
+        <article class="card"><i class="fas fa-laptop-code"></i><h3 data-i18n="c2t">Web Development</h3><p data-i18n="c2d">Frontend and backend, from clean HTML/CSS to Angular and .NET.</p></article>
+        <article class="card"><i class="fas fa-brain"></i><h3 data-i18n="c3t">Data &amp; ML</h3><p data-i18n="c3d">Data science and machine learning with Python.</p></article>
       </div>
     </section>
 
     <section id="skills" class="reveal">
-      <h2 class="title"><span class="num mono">02</span> Tech Stack</h2>
+      <h2 class="title"><span class="num mono">02</span> <span data-i18n="t_skills">Tech Stack</span></h2>
       <div class="chips">
         <span><i class="fab fa-python"></i> Python</span>
         <span><i class="fas fa-code"></i> C</span>
@@ -71,16 +83,22 @@
       </div>
     </section>
 
+    <section id="projects" class="reveal">
+      <h2 class="title"><span class="num mono">03</span> <span data-i18n="t_proj">Projects</span></h2>
+      <div class="grid three" id="projGrid"></div>
+      <a class="more" href="https://github.com/nihatbayramm?tab=repositories" target="_blank" rel="noopener"><span data-i18n="more">All repositories on GitHub</span> <i class="fas fa-arrow-up-right-from-square"></i></a>
+    </section>
+
     <section id="education" class="reveal">
-      <h2 class="title"><span class="num mono">03</span> Education</h2>
+      <h2 class="title"><span class="num mono">04</span> <span data-i18n="t_edu">Education</span></h2>
       <div class="timeline">
-        <div class="item"><span class="when mono">2026</span><h3>Iğdır University</h3><p>Computer Engineering (4th Year)</p></div>
-        <div class="item"><span class="when mono">High School</span><h3>Şırnak Mustafa Bayram ÇPAL</h3><p>IT Technologies, Web Design</p></div>
+        <div class="item"><span class="when mono">2026</span><h3>Iğdır University</h3><p data-i18n="ce">Computer Engineering (4th Year)</p></div>
+        <div class="item"><span class="when mono" data-i18n="hs">High School</span><h3>Şırnak Mustafa Bayram ÇPAL</h3><p data-i18n="it">IT Technologies, Web Design</p></div>
       </div>
     </section>
 
     <section id="certs" class="reveal">
-      <h2 class="title"><span class="num mono">04</span> Certifications</h2>
+      <h2 class="title"><span class="num mono">05</span> <span data-i18n="t_certs">Certifications</span></h2>
       <div class="grid two">
         <article class="card"><h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3><ul>
           <li>Cybersecurity Analyst <small>Akbank Gençlik Akademisi</small></li>
@@ -93,19 +111,26 @@
           <li>Python 101/202/303/404 <small>Turkcell Geleceği Yazanlar</small></li></ul></article>
         <article class="card"><h3><i class="fas fa-brain"></i> AI &amp; Data Science</h3><ul>
           <li>Artificial Intelligence Bootcamp <small>Pupilica</small></li></ul></article>
-        <article class="card"><h3><i class="fas fa-language"></i> Language &amp; Linux</h3><ul>
+        <article class="card"><h3><i class="fas fa-language"></i> <span data-i18n="ll">Language &amp; Linux</span></h3><ul>
           <li>A1/A2/B1 English Level <small>BTK Akademi</small></li>
           <li>NDG Linux Unhatched <small>Cisco NetAcad</small></li></ul></article>
       </div>
     </section>
 
     <section id="contact" class="reveal">
-      <h2 class="title"><span class="num mono">05</span> Connect With Me</h2>
+      <h2 class="title"><span class="num mono">06</span> <span data-i18n="t_contact">Connect With Me</span></h2>
       <div class="social">
         <a href="https://github.com/nihatbayramm" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a href="https://www.instagram.com/nihatbayramm/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
       </div>
+      <form id="form" class="card form" novalidate>
+        <h3 data-i18n="fm_t">Send me a message</h3>
+        <div class="row"><input id="fn" required placeholder="Name" data-ph="fn_p"><input id="fe" type="email" required placeholder="Email" data-ph="fe_p"></div>
+        <textarea id="fm" rows="4" required placeholder="Your message" data-ph="fm_p"></textarea>
+        <button class="btn primary" type="submit"><i class="fas fa-paper-plane"></i> <span data-i18n="send">Send</span></button>
+        <p id="fstatus" class="status" role="status"></p>
+      </form>
       <blockquote>“When writing code, you're not just communicating with computers, you're communicating with your dreams.”<footer>— Nihat Bayram</footer></blockquote>
     </section>
   </main>
