@@ -10,7 +10,7 @@ t_about:"Hakkımda",t_skills:"Teknolojiler",t_proj:"Projeler",t_edu:"Eğitim",t_
 c1t:"Siber Güvenlik",c1d:"Etik hacking, ağ analizi ve güvenlik araçları.",
 c2t:"Web Geliştirme",c2d:"Temiz HTML/CSS'ten Angular ve .NET'e frontend ve backend.",
 c3t:"Veri ve Yapay Zekâ",c3d:"Python ile veri bilimi ve makine öğrenmesi.",
-hs:"Lise",bg1:"Mezun · 2026",grad:"2026 · Mezun",ce:"Bilgisayar Mühendisliği (Lisans)",it:"Bilişim Teknolojileri, Web Tasarım",ll:"Dil ve Linux",
+hs:"Lise",nav_blog:"Blog",t_blog:"Blog",blog_sub:"Siber güvenlik ve Linux üzerine notlar.",min:"dk okuma",rd:"Yazıyı oku",bg1:"Mezun · 2026",grad:"2026 · Mezun",ce:"Bilgisayar Mühendisliği (Lisans)",it:"Bilişim Teknolojileri, Web Tasarım",ll:"Dil ve Linux",
 more:"GitHub'daki tüm depolar",fm_t:"Bana mesaj gönder",send:"Gönder",
 fn_p:"Adın",fe_p:"E-posta",fm_p:"Mesajın",
 p1:"Ağ trafiğinde FFT ile frekans analizi yaparak anormallikleri tespit eden sistem.",
@@ -46,10 +46,21 @@ $('#projGrid').innerHTML=projects.map(p=>`<a class="card proj" href="https://git
 <div class="top"><i class="fas ${p[1]}"></i><span class="lang mono">${p[2]}</span></div>
 <h3>${p[0].replace(/-/g,' ').replace(/_/g,' ')}</h3><p data-i18n="${p[3]}"></p><span class="go"><span data-i18n="go"></span> <i class="fas fa-arrow-right"></i></span></a>`).join('');
 
+const posts=[
+ ['ssh-sertlestirme','fa-key','Linux','2026-10-12',6,'SSH Sunucunu Sertleştirmek: Şifreyi Bırak, Anahtara Geç','Anahtar tabanlı kimlik doğrulama, sshd_config, UFW ve fail2ban ile SSH erişimini güvenli hale getir.'],
+ ['linux-log-analizi','fa-magnifying-glass-chart','Siber Güvenlik','2026-10-26',6,'Linux Loglarıyla Saldırı İzlerini Yakalamak','auth.log ve journalctl ile başarısız girişleri, şüpheli IP’leri ve ayrıcalık yükseltme izlerini analiz et.'],
+ ['nmap-ag-kesfi','fa-network-wired','Siber Güvenlik','2026-11-02',6,'Nmap ile Kendi Ağını Keşfetmek: Temel Rehber','Ağdaki cihazları, açık portları ve servis sürümlerini bul; sonuçları savunma gözüyle yorumla.'],
+ ['linux-yetki-yonetimi','fa-user-lock','Linux','2026-11-05',7,'Linux’ta Dosya İzinleri ve En Az Ayrıcalık İlkesi','chmod, umask, sudo ve SUID denetimleriyle en az ayrıcalık ilkesini uygula.']];
+EN.min="min read";EN.rd="Read post";
+$('#blogGrid').innerHTML=posts.map(p=>`<a class="card proj post-card" href="blog/${p[0]}.html">
+<div class="top"><i class="fas ${p[1]}"></i><span class="lang mono">${p[2]}</span></div>
+<h3>${p[5]}</h3><p>${p[6]}</p><div class="pm mono"><time data-d="${p[3]}"></time> · ${p[4]} <span data-i18n="min"></span></div><span class="go"><span data-i18n="rd"></span> <i class="fas fa-arrow-right"></i></span></a>`).join('');
+
 function apply(){
   document.documentElement.lang=lang;$('#lang').textContent=lang==='tr'?'EN':'TR';
   document.querySelectorAll('[data-i18n]').forEach(e=>e.innerHTML=t(e.dataset.i18n));
   document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=t(e.dataset.ph));
+  document.querySelectorAll('time[data-d]').forEach(e=>e.textContent=new Date(e.dataset.d+'T00:00:00').toLocaleDateString(lang==='tr'?'tr-TR':'en-US',{day:'numeric',month:'long',year:'numeric'}));
   w=0;c=0;del=false;
 }
 $('#lang').onclick=()=>{lang=lang==='tr'?'en':'tr';safe(()=>localStorage.setItem('lang',lang));apply()};

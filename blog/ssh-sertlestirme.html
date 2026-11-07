@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SSH Sunucunu Sertleştirmek: Şifreyi Bırak, Anahtara Geç | Nihat Bayram</title>
+  <meta name="description" content="Anahtar tabanlı kimlik doğrulama, sshd_config ayarları, UFW ve fail2ban ile SSH erişimini güvenli hale getirme rehberi.">
+  <meta property="og:title" content="SSH Sunucunu Sertleştirmek: Şifreyi Bırak, Anahtara Geç"><meta property="og:description" content="Anahtar tabanlı kimlik doğrulama, sshd_config ayarları, UFW ve fail2ban ile SSH erişimini güvenli hale getirme rehberi."><meta property="og:type" content="article">
+  <meta name="theme-color" content="#05070f">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css?v=12">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <header class="nav">
+    <a href="../index.html#home" class="logo" aria-label="Home"><img class="av" src="../assets/me.jpg" alt="Nihat Bayram" width="38" height="38"><span class="tx">nb<span>.</span></span></a>
+    <a class="btn-nav back" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Blog</a>
+    <div class="tools"><button id="theme" class="tool" aria-label="Tema"><i class="fas fa-sun"></i></button></div>
+  </header>
+  <main class="post">
+    <p class="pmeta mono"><span class="lang">Linux</span> <time>2026-10-12</time> · 6 dk okuma</p>
+    <h1>SSH Sunucunu Sertleştirmek: Şifreyi Bırak, Anahtara Geç</h1>
+    <p class="plead">İnternete açık bir Linux sunucunun ilk saldırı yüzeyi neredeyse her zaman SSH olur. Birkaç ayarla bu kapıyı ciddi şekilde sağlamlaştırabilirsin.</p>
+    <div class="author"><img src="../assets/me.jpg" alt="" width="44" height="44"><div><b>Nihat Bayram</b><span>Bilgisayar Mühendisi</span></div></div>
+    <article class="body">
+<h2>1. Anahtar tabanlı kimlik doğrulama</h2><p>Parola denemeleri (brute force) SSH’a yönelik en yaygın saldırıdır. Parolayı tamamen kapatıp anahtar kullanmak bu saldırı türünü büyük oranda etkisiz bırakır. Kendi bilgisayarında bir Ed25519 anahtarı oluştur ve sunucuya kopyala:</p><pre><code>ssh-keygen -t ed25519 -C &quot;kullanici@laptop&quot;
+ssh-copy-id kullanici@sunucu-ip</code></pre><p>Özel anahtarını (<code>id_ed25519</code>) kimseyle paylaşma ve mümkünse bir parola (passphrase) ile koru.</p><h2>2. sshd_config ayarları</h2><p><code>/etc/ssh/sshd_config</code> dosyasında şu ayarları gözden geçir:</p><pre><code>PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+KbdInteractiveAuthentication no
+MaxAuthTries 3
+LoginGraceTime 30
+AllowUsers kullanici
+X11Forwarding no
+ClientAliveInterval 300
+ClientAliveCountMax 2</code></pre><p>Yapılandırmayı kontrol edip servisi yeniden yükle:</p><pre><code>sudo sshd -t
+sudo systemctl reload ssh   # RHEL tabanlı sistemlerde: sshd</code></pre><div class="callout warn"><b>Dikkat:</b> Ayarları uygulamadan önce açık bir ikinci SSH oturumu tut. Hata yaparsan kendini dışarıda bırakmazsın. Anahtarla giriş yapabildiğini doğrulamadan <code>PasswordAuthentication no</code> yapma.</div><h2>3. Güvenlik duvarı</h2><p>Sadece ihtiyacın olan portları aç. UFW ile bu birkaç satırdır; SSH kuralını etkinleştirmeden önce eklemeyi unutma:</p><pre><code>sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow OpenSSH
+sudo ufw enable</code></pre><h2>4. fail2ban ile otomatik engelleme</h2><p>Tekrarlayan başarısız denemeleri yapan IP adreslerini geçici olarak engeller:</p><pre><code>sudo apt install fail2ban
+
+# /etc/fail2ban/jail.local
+[sshd]
+enabled  = true
+maxretry = 5
+findtime = 10m
+bantime  = 1h</code></pre><pre><code>sudo systemctl enable --now fail2ban
+sudo fail2ban-client status sshd</code></pre><h2>5. Port değiştirmek yeterli mi?</h2><p>SSH portunu 22’den değiştirmek log gürültüsünü azaltır ama gerçek bir güvenlik önlemi değildir. Hedefli bir saldırgan tüm portları tarar. Bunu ek bir katman olarak düşün, anahtar kimlik doğrulamanın yerine koyma.</p><h2>6. Doğrulama</h2><p>Etkin ayarları sshd’nin gerçekte nasıl yorumladığına bakarak doğrula:</p><pre><code>sudo sshd -T | grep -E &quot;permitrootlogin|passwordauthentication|pubkeyauthentication&quot;</code></pre><h2>Özet</h2><ul><li>Parola yerine anahtar kullan, root girişini kapat.</li><li>Erişimi <code>AllowUsers</code> ile sınırla.</li><li>UFW ile yalnızca gerekli portları aç.</li><li>fail2ban ile saldırı denemelerini otomatik engelle.</li><li>Her değişiklikten sonra ayarları test et.</li></ul>
+    </article>
+    <p class="disc"><i class="fas fa-circle-info"></i> Bu yazıdaki komutlar ve yöntemler eğitim ve savunma amaçlıdır. Yalnızca sahibi olduğun veya yazılı izin aldığın sistemlerde dene. Komutları üretim ortamında çalıştırmadan önce bir test sisteminde dene.</p>
+    <a class="more" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
+  <script src="post.js?v=12"></script>
+</body>
+</html>

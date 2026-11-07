@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nmap ile Kendi Ağını Keşfetmek: Temel Rehber | Nihat Bayram</title>
+  <meta name="description" content="Nmap ile ağdaki cihazları bulma, açık portları ve servis sürümlerini listeleme; sonuçları savunma gözüyle yorumlama.">
+  <meta property="og:title" content="Nmap ile Kendi Ağını Keşfetmek: Temel Rehber"><meta property="og:description" content="Nmap ile ağdaki cihazları bulma, açık portları ve servis sürümlerini listeleme; sonuçları savunma gözüyle yorumlama."><meta property="og:type" content="article">
+  <meta name="theme-color" content="#05070f">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css?v=12">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <header class="nav">
+    <a href="../index.html#home" class="logo" aria-label="Home"><img class="av" src="../assets/me.jpg" alt="Nihat Bayram" width="38" height="38"><span class="tx">nb<span>.</span></span></a>
+    <a class="btn-nav back" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Blog</a>
+    <div class="tools"><button id="theme" class="tool" aria-label="Tema"><i class="fas fa-sun"></i></button></div>
+  </header>
+  <main class="post">
+    <p class="pmeta mono"><span class="lang">Siber Güvenlik</span> <time>2026-11-02</time> · 6 dk okuma</p>
+    <h1>Nmap ile Kendi Ağını Keşfetmek: Temel Rehber</h1>
+    <p class="plead">Bir ağı savunmak için önce neyin ayakta olduğunu bilmen gerekir. Nmap, bunu yapmanın en yaygın ve en esnek aracıdır.</p>
+    <div class="author"><img src="../assets/me.jpg" alt="" width="44" height="44"><div><b>Nihat Bayram</b><span>Bilgisayar Mühendisi</span></div></div>
+    <article class="body">
+<div class="callout warn"><b>Yasal uyarı:</b> Nmap taraması yalnızca sahibi olduğun ya da yazılı izin aldığın ağlarda yapılmalıdır. İzinsiz tarama birçok ülkede suç sayılabilir ve ağ yöneticileri tarafından saldırı girişimi olarak değerlendirilir.</div><h2>Kurulum</h2><pre><code>sudo apt install nmap
+nmap --version</code></pre><h2>1. Ağdaki cihazları bulma</h2><p>Port taraması yapmadan yalnızca canlı cihazları listeler (ping taraması):</p><pre><code>nmap -sn 192.168.1.0/24</code></pre><h2>2. Port taraması</h2><pre><code>nmap 192.168.1.10                 # en yaygın 1000 port
+nmap -p 22,80,443 192.168.1.10   # belirli portlar
+nmap --top-ports 100 192.168.1.10
+nmap -p- 192.168.1.10            # 65535 portun tamamı</code></pre><h2>3. Servis ve sürüm tespiti</h2><p>Açık portun arkasında hangi yazılımın ve hangi sürümün çalıştığını gösterir. Eski sürümleri görmek için değerlidir:</p><pre><code>nmap -sV 192.168.1.10
+sudo nmap -O 192.168.1.10        # işletim sistemi tahmini (root gerekir)</code></pre><h2>4. Varsayılan betikler ve sonuçları kaydetme</h2><pre><code>nmap -sC -sV 192.168.1.10
+nmap -sC -sV -oA tarama-sonucu 192.168.1.10   # normal, XML ve grepable çıktı</code></pre><h2>Sık kullanılan parametreler</h2><table><thead><tr><th>Parametre</th><th>Anlamı</th></tr></thead><tbody><tr><td><code>-sn</code></td><td>Port taraması yok, sadece cihaz keşfi</td></tr><tr><td><code>-sS</code></td><td>SYN taraması (root ile varsayılan)</td></tr><tr><td><code>-sV</code></td><td>Servis sürümü tespiti</td></tr><tr><td><code>-sC</code></td><td>Varsayılan NSE betikleri</td></tr><tr><td><code>-p</code></td><td>Port aralığı belirtme</td></tr><tr><td><code>-oA</code></td><td>Tüm çıktı formatlarını kaydetme</td></tr></tbody></table><h2>Sonuçları savunma gözüyle okumak</h2><p>Tarama sonucunda şu soruları sor: Bu port neden açık? Bu servise gerçekten ihtiyaç var mı? Sürümü güncel mi? Bir sunucuda dışarıdan görünen portları, içeriden gördüğün listeyle karşılaştırmak için:</p><pre><code>sudo ss -tulpn</code></pre><p>Dışarıdan Nmap ile gördüğün ile içeriden <code>ss</code> ile gördüğün arasında fark varsa, güvenlik duvarı kuralların beklediğin gibi çalışmıyor olabilir.</p><h2>Özet</h2><ul><li>Önce izin, sonra tarama.</li><li><code>-sn</code> ile cihazları, <code>-sV</code> ile servisleri bul.</li><li>Gereksiz açık portları kapat, eski sürümleri güncelle.</li><li>Tarama sonuçlarını kaydet ve zaman içinde karşılaştır.</li></ul>
+    </article>
+    <p class="disc"><i class="fas fa-circle-info"></i> Bu yazıdaki komutlar ve yöntemler eğitim ve savunma amaçlıdır. Yalnızca sahibi olduğun veya yazılı izin aldığın sistemlerde dene. Komutları üretim ortamında çalıştırmadan önce bir test sisteminde dene.</p>
+    <a class="more" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
+  <script src="post.js?v=12"></script>
+</body>
+</html>

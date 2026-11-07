@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
   <canvas id="bg" aria-hidden="true"></canvas>
@@ -29,6 +29,7 @@
       <a href="#projects" data-i18n="nav_projects">Projects</a>
       <a href="#education" data-i18n="nav_edu">Education</a>
       <a href="#certs" data-i18n="nav_certs">Certificates</a>
+      <a href="#blog" data-i18n="nav_blog">Blog</a>
       <a href="#contact" class="btn-nav" data-i18n="nav_contact">Contact</a>
       <div class="panel-tools"><button id="lang2" class="tool mono" aria-label="Language">TR</button><button id="theme2" class="tool" aria-label="Theme"><i class="fas fa-sun"></i></button></div>
     </nav>
@@ -133,8 +134,14 @@
       </div>
     </section>
 
+    <section id="blog" class="reveal">
+      <h2 class="title"><span class="num mono">06</span> <span data-i18n="t_blog">Blog</span></h2>
+      <p class="sub" data-i18n="blog_sub">Notes on cybersecurity and Linux (in Turkish).</p>
+      <div class="grid two" id="blogGrid"></div>
+    </section>
+
     <section id="contact" class="reveal">
-      <h2 class="title"><span class="num mono">06</span> <span data-i18n="t_contact">Connect With Me</span></h2>
+      <h2 class="title"><span class="num mono">07</span> <span data-i18n="t_contact">Connect With Me</span></h2>
       <div class="social">
         <a href="https://github.com/nihatbayramm" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/nihat-bayram-b3a1b4277/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -152,6 +159,6 @@
   </main>
 
   <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

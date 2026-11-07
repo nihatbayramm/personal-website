@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Linux Loglarıyla Saldırı İzlerini Yakalamak | Nihat Bayram</title>
+  <meta name="description" content="auth.log ve journalctl ile başarısız girişleri, şüpheli IP’leri ve ayrıcalık yükseltme izlerini komut satırından analiz etme.">
+  <meta property="og:title" content="Linux Loglarıyla Saldırı İzlerini Yakalamak"><meta property="og:description" content="auth.log ve journalctl ile başarısız girişleri, şüpheli IP’leri ve ayrıcalık yükseltme izlerini komut satırından analiz etme."><meta property="og:type" content="article">
+  <meta name="theme-color" content="#05070f">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css?v=12">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <header class="nav">
+    <a href="../index.html#home" class="logo" aria-label="Home"><img class="av" src="../assets/me.jpg" alt="Nihat Bayram" width="38" height="38"><span class="tx">nb<span>.</span></span></a>
+    <a class="btn-nav back" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Blog</a>
+    <div class="tools"><button id="theme" class="tool" aria-label="Tema"><i class="fas fa-sun"></i></button></div>
+  </header>
+  <main class="post">
+    <p class="pmeta mono"><span class="lang">Siber Güvenlik</span> <time>2026-10-26</time> · 6 dk okuma</p>
+    <h1>Linux Loglarıyla Saldırı İzlerini Yakalamak</h1>
+    <p class="plead">Saldırıyı önlemek kadar fark etmek de önemlidir. Çoğu zaman ihtiyacın olan bilgi zaten loglarda duruyor, yeter ki nereye bakacağını bil.</p>
+    <div class="author"><img src="../assets/me.jpg" alt="" width="44" height="44"><div><b>Nihat Bayram</b><span>Bilgisayar Mühendisi</span></div></div>
+    <article class="body">
+<h2>Loglar nerede?</h2><p>Dağıtıma göre kimlik doğrulama kayıtları farklı dosyalarda tutulur:</p><table><thead><tr><th>Sistem</th><th>Kimlik doğrulama logu</th></tr></thead><tbody><tr><td>Debian / Ubuntu</td><td><code>/var/log/auth.log</code></td></tr><tr><td>RHEL / CentOS / Fedora</td><td><code>/var/log/secure</code></td></tr><tr><td>systemd (hepsi)</td><td><code>journalctl</code></td></tr></tbody></table><h2>1. Başarısız giriş denemeleri</h2><p>Önce toplam sayıya, sonra en çok deneme yapan IP adreslerine bak:</p><pre><code>sudo grep &quot;Failed password&quot; /var/log/auth.log | wc -l
+
+sudo grep &quot;Failed password&quot; /var/log/auth.log \
+  | awk &#x27;{print $(NF-3)}&#x27; | sort | uniq -c | sort -nr | head</code></pre><p>Çıktıdaki en üst satırlar, sunucunu en çok yoklayan adreslerdir. Bunları fail2ban ile otomatik engelleyebilir ya da güvenlik duvarına ekleyebilirsin.</p><h2>2. Denenen kullanıcı adları</h2><p>Saldırganlar genelde <code>admin</code>, <code>test</code>, <code>oracle</code> gibi yaygın isimleri dener:</p><pre><code>sudo grep &quot;Invalid user&quot; /var/log/auth.log \
+  | awk &#x27;{print $8}&#x27; | sort | uniq -c | sort -nr | head</code></pre><h2>3. Başarılı girişleri incele</h2><p>Asıl önemli olan, içeri kimin girdiğidir. Tanımadığın bir IP’den ya da olağan dışı saatte yapılan girişlere dikkat et:</p><pre><code>sudo grep &quot;Accepted&quot; /var/log/auth.log
+last -a | head -20
+sudo lastb | head      # başarısız girişler (root gerekir)</code></pre><h2>4. journalctl ile zaman aralığı</h2><pre><code>sudo journalctl -u ssh --since &quot;1 hour ago&quot; | grep -i &quot;failed&quot;
+sudo journalctl -p err -b      # bu açılıştaki hata kayıtları</code></pre><h2>5. Ayrıcalık yükseltme ve hesap değişiklikleri</h2><p>Bir sistem ele geçirildiğinde sık görülen izler: yeni kullanıcılar, sudo kullanımı ve grup değişiklikleri.</p><pre><code>sudo grep -E &quot;sudo:|useradd|usermod|groupadd&quot; /var/log/auth.log | tail -50</code></pre><div class="callout info"><b>İpucu:</b> Saldırgan sistemde yetki kazanırsa yerel logları silebilir. Önemli sistemlerde logları uzak bir sunucuya (merkezi log / SIEM) göndermek bu yüzden önemlidir.</div><h2>Otomasyona geçmek</h2><p>Manuel analiz öğrenmek için çok iyidir ama ölçeklenmez. Düzenli kullanım için şu araçlara bak: <b>fail2ban</b> (otomatik engelleme), <b>logwatch</b> (günlük özet rapor), <b>auditd</b> (dosya ve sistem çağrısı denetimi) ve merkezi log çözümleri.</p><h2>Özet</h2><ul><li>Kimlik doğrulama loglarını düzenli oku, özellikle başarılı girişleri.</li><li>Tekrarlayan IP’leri ve denenen kullanıcı adlarını çıkar.</li><li>Yeni hesap ve sudo etkinliklerini izle.</li><li>Logları sunucunun dışına da kaydet.</li></ul>
+    </article>
+    <p class="disc"><i class="fas fa-circle-info"></i> Bu yazıdaki komutlar ve yöntemler eğitim ve savunma amaçlıdır. Yalnızca sahibi olduğun veya yazılı izin aldığın sistemlerde dene. Komutları üretim ortamında çalıştırmadan önce bir test sisteminde dene.</p>
+    <a class="more" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
+  <script src="post.js?v=12"></script>
+</body>
+</html>

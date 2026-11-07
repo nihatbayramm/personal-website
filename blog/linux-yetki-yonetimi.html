@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Linux’ta Dosya İzinleri ve En Az Ayrıcalık İlkesi | Nihat Bayram</title>
+  <meta name="description" content="chmod, chown, umask, sudo ve SUID denetimleriyle Linux sistemlerde en az ayrıcalık ilkesini uygulama rehberi.">
+  <meta property="og:title" content="Linux’ta Dosya İzinleri ve En Az Ayrıcalık İlkesi"><meta property="og:description" content="chmod, chown, umask, sudo ve SUID denetimleriyle Linux sistemlerde en az ayrıcalık ilkesini uygulama rehberi."><meta property="og:type" content="article">
+  <meta name="theme-color" content="#05070f">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css?v=12">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <header class="nav">
+    <a href="../index.html#home" class="logo" aria-label="Home"><img class="av" src="../assets/me.jpg" alt="Nihat Bayram" width="38" height="38"><span class="tx">nb<span>.</span></span></a>
+    <a class="btn-nav back" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Blog</a>
+    <div class="tools"><button id="theme" class="tool" aria-label="Tema"><i class="fas fa-sun"></i></button></div>
+  </header>
+  <main class="post">
+    <p class="pmeta mono"><span class="lang">Linux</span> <time>2026-11-05</time> · 7 dk okuma</p>
+    <h1>Linux’ta Dosya İzinleri ve En Az Ayrıcalık İlkesi</h1>
+    <p class="plead">Yanlış yapılandırılmış izinler, ele geçirilen bir hesabın tüm sisteme yayılmasının en yaygın nedenlerinden biridir. Çözüm basit: herkese yalnızca işi için gereken yetkiyi ver.</p>
+    <div class="author"><img src="../assets/me.jpg" alt="" width="44" height="44"><div><b>Nihat Bayram</b><span>Bilgisayar Mühendisi</span></div></div>
+    <article class="body">
+<h2>İzinleri okumak</h2><p><code>ls -l</code> çıktısındaki <code>-rwxr-x---</code> gibi bir ifade üç grupta okunur: sahip, grup ve diğerleri. Her grup için r (oku, 4), w (yaz, 2) ve x (çalıştır, 1) değerleri toplanır.</p><table><thead><tr><th>Mod</th><th>Anlamı</th><th>Tipik kullanım</th></tr></thead><tbody><tr><td><code>600</code></td><td>Sahip okur/yazar</td><td>SSH özel anahtarı, gizli dosyalar</td></tr><tr><td><code>644</code></td><td>Sahip yazar, herkes okur</td><td>Normal yapılandırma dosyaları</td></tr><tr><td><code>700</code></td><td>Sadece sahip erişir</td><td>Özel dizinler (<code>~/.ssh</code>)</td></tr><tr><td><code>755</code></td><td>Sahip tam, diğerleri oku/çalıştır</td><td>Çalıştırılabilir dosyalar, genel dizinler</td></tr></tbody></table><h2>chmod ve chown</h2><pre><code>chmod 600 ~/.ssh/id_ed25519
+chmod 700 ~/.ssh
+chown kullanici:grup dosya.txt
+chmod -R o-rwx /srv/uygulama   # diğerlerinin tüm erişimini kaldır</code></pre><h2>umask: yeni dosyaların varsayılanı</h2><p><code>umask</code>, yeni oluşturulan dosyalardan hangi izinlerin çıkarılacağını belirler. <code>022</code> çoğu sistemde varsayılandır; <code>027</code> ise diğer kullanıcıların erişimini baştan kapatır.</p><pre><code>umask         # mevcut değer
+umask 027</code></pre><h2>Servis hesapları</h2><p>Uygulamaları root olarak çalıştırma. Her servis için ayrı, oturum açamayan bir hesap kullan:</p><pre><code>sudo useradd -r -s /usr/sbin/nologin servis-hesabi</code></pre><h2>sudo yönetimi</h2><p>Sudo kurallarını her zaman <code>visudo</code> ile düzenle; sözdizimi hatasını kaydetmeden yakalar. Mümkünse tüm yetkiler yerine yalnızca gerekli komutlara izin ver:</p><pre><code>sudo -l                          # kendi yetkilerini listele
+sudo visudo -f /etc/sudoers.d/yedek
+
+# /etc/sudoers.d/yedek
+yedek ALL=(root) /usr/bin/rsync</code></pre><div class="callout warn"><b>Dikkat:</b> <code>NOPASSWD: ALL</code> gibi geniş kurallar, hesabı ele geçiren birine doğrudan root verir. Gerçekten gerekmedikçe kullanma.</div><h2>Riskli izinleri denetlemek</h2><p>Düzenli olarak şu iki kontrolü çalıştır. İlki SUID bitine sahip dosyaları, ikincisi herkesin yazabildiği dosyaları listeler:</p><pre><code>find / -xdev -perm -4000 -type f 2&gt;/dev/null
+find / -xdev -type f -perm -0002 2&gt;/dev/null</code></pre><p>SUID dosyaları sahibinin (çoğu zaman root) yetkisiyle çalışır. Listede tanımadığın ya da dağıtımın standart paketlerinden olmayan bir dosya görürsen incelemeye değer. Herkesin yazabildiği dosyalar ise kötü niyetli birinin içeriği değiştirebileceği anlamına gelir.</p><h2>Özet</h2><ul><li>Gizli dosyalar için <code>600</code>, özel dizinler için <code>700</code> kullan.</li><li>Servisleri root yerine kısıtlı hesaplarla çalıştır.</li><li>sudo kurallarını dar tut, <code>visudo</code> ile düzenle.</li><li>SUID ve herkese yazılabilir dosyaları düzenli denetle.</li></ul>
+    </article>
+    <p class="disc"><i class="fas fa-circle-info"></i> Bu yazıdaki komutlar ve yöntemler eğitim ve savunma amaçlıdır. Yalnızca sahibi olduğun veya yazılı izin aldığın sistemlerde dene. Komutları üretim ortamında çalıştırmadan önce bir test sisteminde dene.</p>
+    <a class="more" href="../index.html#blog"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
+  <script src="post.js?v=12"></script>
+</body>
+</html>
