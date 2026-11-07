@@ -10,10 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="grid-bg" aria-hidden="true"></div>
   <div class="progress" id="progress"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="glow" id="glow" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 
@@ -47,6 +50,16 @@
         <div><b data-count="30">0</b><span data-i18n="st1">Repositories</span></div>
         <div><b data-count="12">0</b><span data-i18n="st2">Technologies</span></div>
         <div><b data-count="10">0</b><span data-i18n="st3">Certificates</span></div>
+      </div>
+      <div class="term" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><span class="mono">nihat@dev:~</span></div>
+        <pre class="mono"><span class="l" style="--d:.6s"><b>$</b> whoami</span>
+<span class="l" style="--d:1.4s">nihat.bayram</span>
+<span class="l" style="--d:2.2s"><b>$</b> cat stack.txt</span>
+<span class="l" style="--d:3s">python · java · c · js · sql</span>
+<span class="l" style="--d:3.6s">linux · nmap · metasploit</span>
+<span class="l" style="--d:4.4s"><b>$</b> status</span>
+<span class="l ok" style="--d:5.2s">graduated ✓ building next…</span></pre>
       </div>
       <div class="marquee" aria-hidden="true">
         <div class="track">
@@ -92,7 +105,7 @@
     <section id="education" class="reveal">
       <h2 class="title"><span class="num mono">04</span> <span data-i18n="t_edu">Education</span></h2>
       <div class="timeline">
-        <div class="item"><span class="when mono">2026</span><h3>Iğdır University</h3><p data-i18n="ce">Computer Engineering (4th Year)</p></div>
+        <div class="item"><span class="when mono" data-i18n="grad">2026 · Graduated</span><h3>Iğdır University</h3><p data-i18n="ce">Computer Engineering (B.Sc.)</p></div>
         <div class="item"><span class="when mono" data-i18n="hs">High School</span><h3>Şırnak Mustafa Bayram ÇPAL</h3><p data-i18n="it">IT Technologies, Web Design</p></div>
       </div>
     </section>
@@ -136,6 +149,6 @@
   </main>
 
   <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
