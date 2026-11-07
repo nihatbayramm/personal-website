@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
   <canvas id="bg" aria-hidden="true"></canvas>
@@ -21,7 +21,7 @@
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header class="nav">
-    <a href="#home" class="logo">nb<span>.</span></a>
+    <a href="#home" class="logo" aria-label="Home"><img class="av" src="assets/me.jpg" alt="Nihat Bayram" width="38" height="38"><span class="tx">nb<span>.</span></span></a>
     <nav>
       <a href="#about" data-i18n="nav_about">About</a>
       <a href="#skills" data-i18n="nav_skills">Skills</a>
@@ -29,17 +29,17 @@
       <a href="#education" data-i18n="nav_edu">Education</a>
       <a href="#certs" data-i18n="nav_certs">Certificates</a>
       <a href="#contact" class="btn-nav" data-i18n="nav_contact">Contact</a>
+      <div class="panel-tools"><button id="lang2" class="tool mono" aria-label="Language">TR</button><button id="theme2" class="tool" aria-label="Theme"><i class="fas fa-sun"></i></button></div>
     </nav>
     <div class="tools">
       <button id="lang" class="tool mono" aria-label="Language">TR</button>
       <button id="theme" class="tool" aria-label="Theme"><i class="fas fa-sun"></i></button>
-      <button id="menu" class="tool menu" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+      <button id="menu" class="tool menu" aria-label="Menu" aria-expanded="false"><i class="fas fa-ellipsis-vertical"></i></button>
     </div>
   </header>
 
   <main>
     <section id="home" class="hero">
-      <div class="hero-pic"><img src="assets/me.jpg" alt="Nihat Bayram" width="92" height="92"></div>
       <p class="eyebrow"><span class="dot"></span> <span data-i18n="eyebrow">Open to learn &amp; build</span></p>
       <h1><span data-i18n="hi">Hi, I'm</span> <span class="grad">Nihat Bayram</span></h1>
       <p class="role"><span data-i18n="role">Computer Engineer</span> · <span id="typed" class="mono"></span><span class="caret">|</span></p>
@@ -154,6 +154,6 @@
   </main>
 
   <footer class="foot">© <span id="year"></span> Nihat Bayram</footer>
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

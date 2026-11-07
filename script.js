@@ -143,8 +143,12 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 document.querySelectorAll('.reveal').forEach(s=>s.querySelectorAll('.card,.chips span,.item,.social a').forEach((n,i)=>n.style.setProperty('--i',i%8)));
 
 (()=>{const nav=$('.nav'),m=$('#menu');
-  const close=()=>{nav.classList.remove('open');m.setAttribute('aria-expanded','false');m.innerHTML='<i class="fas fa-bars"></i>'};
-  m.onclick=()=>{const o=nav.classList.toggle('open');m.setAttribute('aria-expanded',o);m.innerHTML=o?'<i class="fas fa-xmark"></i>':'<i class="fas fa-bars"></i>'};
+  const close=()=>{nav.classList.remove('open');m.setAttribute('aria-expanded','false');m.innerHTML='<i class="fas fa-ellipsis-vertical"></i>'};
+  m.onclick=()=>{const o=nav.classList.toggle('open');m.setAttribute('aria-expanded',o);m.innerHTML=o?'<i class="fas fa-xmark"></i>':'<i class="fas fa-ellipsis-vertical"></i>'};
   document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',close));
   addEventListener('scroll',close,{passive:true});
 })();
+
+(()=>{const sync=()=>{$('#lang2').textContent=$('#lang').textContent;$('#theme2').innerHTML=$('#theme').innerHTML};
+  $('#lang2').onclick=()=>{$('#lang').click();sync()};$('#theme2').onclick=()=>{$('#theme').click();sync()};
+  $('#lang').addEventListener('click',sync);$('#theme').addEventListener('click',sync);sync()})();
