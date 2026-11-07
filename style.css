@@ -164,3 +164,9 @@ blockquote footer{margin-top:12px;font-style:normal;color:var(--mute);font-size:
  .panel-tools{display:flex;gap:10px;justify-content:center;padding-top:8px;border-top:1px solid var(--line);margin-top:6px}
  .panel-tools .tool{width:46px;height:46px}
 }
+
+.tag{position:relative;display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;font-size:.82rem;letter-spacing:.04em;color:var(--text);white-space:nowrap;background:linear-gradient(var(--menu),var(--menu)) padding-box,conic-gradient(from var(--ang),var(--a),var(--b),var(--c),var(--a)) border-box;border:1.5px solid transparent;animation:spin 6s linear infinite;box-shadow:0 0 24px -8px var(--a)}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 0 0 var(--c);animation:pulse 2s infinite}
+.tag b{font-weight:500;background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:380px){.tag{padding:7px 12px;font-size:.75rem}}
+@media(max-width:820px){.nav .tools{margin-left:0}.tag{margin:0 auto}}
