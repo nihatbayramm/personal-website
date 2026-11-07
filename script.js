@@ -1,6 +1,6 @@
 const $=s=>document.querySelector(s);
 const safe=(f,d)=>{try{return f()}catch(e){return d}};
-const CONTACT_EMAIL=""; // e-posta adresini buraya yaz: "ornek@mail.com"
+const CONTACT_EMAIL=["nihatbayram585","gmail.com"].join("@"); // basit bot korumasi icin parcali
 
 const TR={eyebrow:"Öğrenmeye ve üretmeye açığım",hi:"Merhaba, ben",role:"Bilgisayar Mühendisi",
 lead:"Siber güvenlik, web programlama, veri bilimi ve makine öğrenmesi alanlarında kendimi geliştirmeye tutkuyla bağlıyım.",
