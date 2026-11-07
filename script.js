@@ -10,7 +10,7 @@ t_about:"Hakkımda",t_skills:"Teknolojiler",t_proj:"Projeler",t_edu:"Eğitim",t_
 c1t:"Siber Güvenlik",c1d:"Etik hacking, ağ analizi ve güvenlik araçları.",
 c2t:"Web Geliştirme",c2d:"Temiz HTML/CSS'ten Angular ve .NET'e frontend ve backend.",
 c3t:"Veri ve Yapay Zekâ",c3d:"Python ile veri bilimi ve makine öğrenmesi.",
-hs:"Lise",grad:"2026 · Mezun",ce:"Bilgisayar Mühendisliği (Lisans)",it:"Bilişim Teknolojileri, Web Tasarım",ll:"Dil ve Linux",
+hs:"Lise",bg1:"Mezun · 2026",grad:"2026 · Mezun",ce:"Bilgisayar Mühendisliği (Lisans)",it:"Bilişim Teknolojileri, Web Tasarım",ll:"Dil ve Linux",
 more:"GitHub'daki tüm depolar",fm_t:"Bana mesaj gönder",send:"Gönder",
 fn_p:"Adın",fe_p:"E-posta",fm_p:"Mesajın",
 p1:"Ağ trafiğinde FFT ile frekans analizi yaparak anormallikleri tespit eden sistem.",
@@ -141,3 +141,10 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
     b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
     b.addEventListener('pointerleave',()=>b.style.transform='')})}
 document.querySelectorAll('.reveal').forEach(s=>s.querySelectorAll('.card,.chips span,.item,.social a').forEach((n,i)=>n.style.setProperty('--i',i%8)));
+
+(()=>{const nav=$('.nav'),m=$('#menu');
+  const close=()=>{nav.classList.remove('open');m.setAttribute('aria-expanded','false');m.innerHTML='<i class="fas fa-bars"></i>'};
+  m.onclick=()=>{const o=nav.classList.toggle('open');m.setAttribute('aria-expanded',o);m.innerHTML=o?'<i class="fas fa-xmark"></i>':'<i class="fas fa-bars"></i>'};
+  document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',close));
+  addEventListener('scroll',close,{passive:true});
+})();
