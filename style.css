@@ -339,3 +339,24 @@ a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s 
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.075;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.09  0 0 0 0 0.17  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 :root[data-theme="dark"] body::after{mix-blend-mode:screen;opacity:.05}
+
+/* ---- v9: giriş animasyonu, dokunma geri bildirimi, ince cila ---- */
+h1,.title,.lead,.role{text-wrap:balance}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero h1 > span,.hero .role,.hero .lead,.hero .cta,.hero .stats,.hero .eyebrow{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 > span:nth-child(1){animation-delay:.05s}
+.hero h1 > .grad{animation-delay:.15s}
+.hero .role{animation-delay:.3s}
+.hero .lead{animation-delay:.38s}
+.hero .cta{animation-delay:.46s}
+.hero .stats{animation-delay:.54s}
+.hero .eyebrow{animation-delay:0s}
+.progress{background:var(--blue);box-shadow:0 0 0 1px var(--ink)}
+@media(hover:none){
+  .card:active,.post:active,.proj:active,.btn:active,.social a:active,.chips span:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+}
+@media(max-width:520px){
+  body::after{opacity:.045}
+  .hero .stats{animation-delay:.5s}
+}
+@media(prefers-reduced-motion:reduce){.hero h1 > span,.hero .role,.hero .lead,.hero .cta,.hero .stats,.hero .eyebrow{animation:none}}
