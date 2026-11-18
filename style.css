@@ -291,3 +291,41 @@ a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s 
 .title{line-height:1.05}
 .foot{letter-spacing:.08em}
 @media(prefers-reduced-motion:reduce){.stamp svg,.track,.caret,.dot{animation:none!important}}
+
+/* ---- v6: tema düzeltmesi, menü, logo fotoğrafı ---- */
+/* Koyu tema (script.js data-theme="dark" ayarlar) */
+:root[data-theme="dark"]{
+  --paper:#15121d;--paper2:#221d2e;--ink:#f3ecd9;--mute:#b7b0a3;--icon:#5b556a;--quote:var(--ink);
+  --nav:var(--paper);--menu:var(--paper);--card:var(--paper);--bg:var(--paper);
+  --orange:#ff7a45;--blue:#6f9bff;--pink:#e8699a;--c:#4ccf82;color-scheme:dark;
+}
+:root[data-theme="dark"] body{background-image:radial-gradient(rgba(243,236,217,.07) 1px,transparent 1.2px)}
+:root[data-theme="dark"] .btn.primary,:root[data-theme="dark"] .btn-nav,:root[data-theme="dark"] .nav .btn-nav,
+:root[data-theme="dark"] .eyebrow,:root[data-theme="dark"] .marquee,:root[data-theme="dark"] .foot,
+:root[data-theme="dark"] .num,:root[data-theme="dark"] .proj .badge,:root[data-theme="dark"] .copy{color:#1d1a2b}
+:root[data-theme="dark"] .nav .btn-nav{color:#15121d}
+:root[data-theme="dark"] .three .card:nth-child(n){background:var(--paper2)}
+:root[data-theme="dark"] .form input,:root[data-theme="dark"] .form textarea{background:var(--paper2);color:var(--ink)}
+:root[data-theme="dark"] .post:hover{background:var(--paper2)}
+:root[data-theme="dark"] .callout{background:var(--paper2)}
+:root[data-theme="dark"] .callout.info{background:var(--paper2)}
+:root[data-theme="dark"] .btn.ghost,:root[data-theme="dark"] .tool,:root[data-theme="dark"] .stats,:root[data-theme="dark"] .stats div{background:var(--paper)}
+:root[data-theme="dark"] .tool:hover,:root[data-theme="dark"] .nav nav a:hover{color:#1d1a2b}
+:root[data-theme="dark"] .body pre{background:#0b0912;color:var(--ink)}
+:root[data-theme="dark"] .body pre code{color:var(--ink)}
+:root[data-theme="dark"] .body code{background:var(--paper2)}
+:root[data-theme="dark"] .body th{color:#15121d}
+:root[data-theme="dark"] .when{background:var(--ink);color:var(--paper)}
+:root[data-theme="dark"] .item::before{border-color:var(--ink)}
+:root[data-theme="dark"] .card,:root[data-theme="dark"] .post,:root[data-theme="dark"] .proj,:root[data-theme="dark"] .chips span{border-color:var(--ink)}
+
+/* Mobil menü: .nav üzerindeki 'open' sınıfına bağlı */
+@media(max-width:860px){
+  .nav.open nav{display:flex;flex-direction:column;align-items:stretch;gap:4px;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:3px solid var(--ink);padding:12px 14px;z-index:25}
+  .nav.open nav a{font-size:.95rem;padding:12px 10px;border:2px solid var(--ink);background:var(--paper)}
+  .nav.open nav .btn-nav{background:var(--blue);color:var(--paper)}
+  .nav.open nav .panel-tools{display:none}
+}
+
+/* Logo fotoğrafı: doğal gri ton, pembe gölge */
+.logo .av{filter:grayscale(1) contrast(1.08);background:var(--paper)}
