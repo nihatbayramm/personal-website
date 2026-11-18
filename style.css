@@ -268,3 +268,8 @@ h1 > span:first-child{text-shadow:4px 3px 0 var(--pink)}
   .title::after{height:2px}
   .nav nav.open,.nav .open{top:100%}
 }
+
+/* ---- v4: fotoğraf riso baskısı gibi (mavi tonlu, çerçeveli) ---- */
+.logo .av{display:block;width:44px;height:44px;object-fit:cover;object-position:50% 30%;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);filter:grayscale(1) sepia(1) hue-rotate(190deg) saturate(3.2) contrast(1.1);transform:rotate(-3deg);transition:.2s}
+.logo:hover .av{transform:rotate(0);box-shadow:4px 4px 0 var(--orange)}
+@media(max-width:860px){.logo .av{width:38px;height:38px}}
