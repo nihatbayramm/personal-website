@@ -220,3 +220,13 @@ h1.ptitle,.ptitle{font-family:'JetBrains Mono',monospace;font-size:clamp(1.7rem,
   .stats b{font-size:1.3rem}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* Osiloskop ekranı (hero) */
+.scope{margin-top:40px;max-width:560px;border:1px solid var(--line2);background:#050b16;padding:0 0 0;position:relative}
+.scope-head,.scope-foot{display:flex;justify-content:space-between;padding:6px 10px;font-size:.68rem;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.scope-head{border-bottom:1px solid var(--line)}
+.scope-foot{border-top:1px solid var(--line)}
+.scope svg{display:block;width:100%;height:auto}
+.scope-grid path{stroke:rgba(255,184,77,.13);stroke-width:1;fill:none}
+.trace path{fill:none;stroke:var(--b);stroke-width:2.2;filter:drop-shadow(0 0 4px var(--b));animation:scan 6s linear infinite}
+@keyframes scan{to{transform:translateX(-600px)}}
