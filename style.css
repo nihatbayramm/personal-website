@@ -232,3 +232,39 @@ h1 > span:first-child{text-shadow:4px 3px 0 var(--pink)}
   .stamp text{font-size:8px}
   .hero::before{width:200px;height:200px;right:-80px}
 }
+
+/* ---- v3: yeni logo damgası + mobil düzen ---- */
+.logo{gap:12px;text-transform:none;letter-spacing:0}
+.logo .mark{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--pink);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--blue);font:900 1.05rem 'Arial Black',Impact,sans-serif;color:var(--ink);transform:rotate(-6deg);transition:.2s}
+.logo:hover .mark{transform:rotate(4deg) translate(-1px,-1px);box-shadow:4px 4px 0 var(--blue)}
+.logo .wordmark{font:900 .82rem/.92 'Arial Black',Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em;color:var(--ink)}
+.logo .wordmark b{color:var(--blue);font-weight:900}
+.logo .av,.logo .tx{display:none}
+
+@media(max-width:860px){
+  .hero{padding-top:110px;min-height:auto;padding-bottom:40px}
+  section{padding:64px 0 16px}
+  .nav{padding:10px 14px}
+  .logo .mark{width:36px;height:36px;font-size:.9rem}
+  .logo .wordmark{font-size:.74rem}
+  .tool{width:34px;height:34px}
+  h1{font-size:clamp(2.6rem,13vw,4rem)}
+  .lead{font-size:1.05rem}
+}
+@media(max-width:520px){
+  .stamp{display:none}
+  .hero::before{display:none}
+  .hero{padding-top:100px}
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn{justify-content:center}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%}
+  .stats div{border-right:3px solid var(--ink);padding:10px 6px;text-align:center}
+  .stats div:last-child{border-right:0}
+  .stats b{font-size:1.5rem}
+  .stats span{font-size:.62rem;letter-spacing:.03em}
+  .grid{gap:18px}
+  .card{padding:18px}
+  .title{font-size:1.6rem;margin-bottom:22px}
+  .title::after{height:2px}
+  .nav nav.open,.nav .open{top:100%}
+}
