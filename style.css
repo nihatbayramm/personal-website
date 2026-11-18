@@ -1,6 +1,6 @@
 /* Risograf baskı teması: kağıt zemin, iki renk, eğik etiketler */
 :root{
-  --paper:#f1ead8;--paper2:#e8dfc8;--ink:#1d1a2b;--orange:#ff5a1f;--blue:#2e5bff;--pink:#ff8fb1;
+  --paper:#f1ead8;--paper2:#e8dfc8;--ink:#1d1a2b;--orange:#ff5a1f;--blue:#2e5bff;--pink:#9aa37a;
   --bg:var(--paper);--card:var(--paper);--line:var(--ink);--text:var(--ink);--mute:#4a4658;
   --nav:var(--paper);--menu:var(--paper);--icon:#9c9687;--quote:var(--ink);
   --a:var(--orange);--b:var(--blue);--c:#1f9d55;--r:0px;color-scheme:light;
@@ -86,7 +86,7 @@ h1 > span:first-child{display:block;color:var(--ink)}
 .card{position:relative;background:var(--paper);border:3px solid var(--ink);padding:22px;transition:.15s;box-shadow:5px 5px 0 var(--ink)}
 .three .card:nth-child(3n+1){transform:rotate(-1deg);background:#dfe7ff}
 .three .card:nth-child(3n+2){transform:rotate(.7deg);background:#ffe0cf}
-.three .card:nth-child(3n){transform:rotate(-.4deg);background:#ffd9e6}
+.three .card:nth-child(3n){transform:rotate(-.4deg);background:#e3e5d6}
 .card:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
 .card>i{font-size:1.5rem;margin-bottom:12px;color:var(--ink)}
 .card h3{font-family:'Arial Black',Impact,sans-serif;font-size:1.15rem;text-transform:uppercase;margin-bottom:8px;letter-spacing:-.01em}
@@ -282,7 +282,7 @@ a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s 
 .three .card:nth-child(n){transform:none}
 .three .card:nth-child(3n+1){box-shadow:5px 5px 0 var(--ink);background:#e4eaff}
 .three .card:nth-child(3n+2){box-shadow:5px 5px 0 var(--ink);background:#ffe6d8}
-.three .card:nth-child(3n){box-shadow:5px 5px 0 var(--ink);background:#ffe0ea}
+.three .card:nth-child(3n){box-shadow:5px 5px 0 var(--ink);background:#e3e5d6}
 .card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
 .chips span:nth-child(odd),.chips span:nth-child(even){transform:none}
 .chips span:hover{transform:translate(-2px,-2px)}
@@ -297,7 +297,7 @@ a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s 
 :root[data-theme="dark"]{
   --paper:#15121d;--paper2:#221d2e;--ink:#f3ecd9;--mute:#b7b0a3;--icon:#5b556a;--quote:var(--ink);
   --nav:var(--paper);--menu:var(--paper);--card:var(--paper);--bg:var(--paper);
-  --orange:#ff7a45;--blue:#6f9bff;--pink:#e8699a;--c:#4ccf82;color-scheme:dark;
+  --orange:#ff7a45;--blue:#6f9bff;--pink:#7d8a62;--c:#4ccf82;color-scheme:dark;
 }
 :root[data-theme="dark"] body{background-image:radial-gradient(rgba(243,236,217,.07) 1px,transparent 1.2px)}
 :root[data-theme="dark"] .btn.primary,:root[data-theme="dark"] .btn-nav,:root[data-theme="dark"] .nav .btn-nav,
@@ -329,3 +329,8 @@ a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s 
 
 /* Logo fotoğrafı: doğal gri ton, pembe gölge */
 .logo .av{filter:grayscale(1) contrast(1.08);background:var(--paper)}
+
+/* ---- v7: daha erkeksi palet (pembe yerine zeytin yeşili) ---- */
+:root{--pink:#9aa37a}
+:root[data-theme="dark"]{--pink:#7d8a62}
+::selection{background:var(--pink);color:var(--ink)}
