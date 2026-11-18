@@ -273,3 +273,21 @@ h1 > span:first-child{text-shadow:4px 3px 0 var(--pink)}
 .logo .av{display:block;width:44px;height:44px;object-fit:cover;object-position:50% 30%;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);filter:grayscale(1) sepia(1) hue-rotate(190deg) saturate(3.2) contrast(1.1);transform:rotate(-3deg);transition:.2s}
 .logo:hover .av{transform:rotate(0);box-shadow:4px 4px 0 var(--orange)}
 @media(max-width:860px){.logo .av{width:38px;height:38px}}
+
+/* ---- v5: profesyonel cila ---- */
+::selection{background:var(--pink);color:var(--ink)}
+:focus{outline:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a,button,.btn,.card,.chips span,.social a,.post,.proj{transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,border-color .18s ease,color .18s ease}
+.three .card:nth-child(n){transform:none}
+.three .card:nth-child(3n+1){box-shadow:5px 5px 0 var(--ink);background:#e4eaff}
+.three .card:nth-child(3n+2){box-shadow:5px 5px 0 var(--ink);background:#ffe6d8}
+.three .card:nth-child(3n){box-shadow:5px 5px 0 var(--ink);background:#ffe0ea}
+.card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.chips span:nth-child(odd),.chips span:nth-child(even){transform:none}
+.chips span:hover{transform:translate(-2px,-2px)}
+.nav .btn-nav:hover{background:var(--orange);color:var(--ink)}
+.card h3,.item h3,.post h3,.proj h3{letter-spacing:-.01em}
+.title{line-height:1.05}
+.foot{letter-spacing:.08em}
+@media(prefers-reduced-motion:reduce){.stamp svg,.track,.caret,.dot{animation:none!important}}
